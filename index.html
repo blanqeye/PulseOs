@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PulseOS - Descarga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: repeating-radial-gradient(circle, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 2px);
+      background-size: 80px 80px;
+      animation: animatedGrid 60s linear infinite;
+      z-index: 0;
+    }
+    .bubbles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 20px; height: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: floatBubbles 20s infinite ease-in;
+    }
+    @keyframes floatBubbles {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(-1000px) scale(1.2); opacity: 0; }
+    }
+    @keyframes animatedGrid {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+    header {
+      background: linear-gradient(to right, #1f1f1f, #3f3f3f);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 0.6s ease-out;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    nav select {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #444;
+      color: white;
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+    }
+    section {
+      padding: 2rem;
+      max-width: 850px;
+      margin: auto;
+      animation: fadeInUp 1s ease;
+      position: relative;
+      z-index: 1;
+    }
+    h2 { margin-bottom: 1rem; font-size: 2rem; }
+    p { margin-bottom: 1.5rem; line-height: 1.6; font-size: 1.1rem; }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .download-button {
+      display: inline-block;
+      background-color: #0077ff;
+      color: white;
+      padding: 0.8rem 1.7rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0, 119, 255, 0.4);
+      transition: transform 0.3s, background 0.3s;
+    }
+    .download-button:hover {
+      background-color: #005fd3;
+      transform: scale(1.05);
+    }
+    .download-button.green {
+      background-color: #28a745;
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+    }
+    .download-button.green:hover {
+      background-color: #218838;
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      animation: slideGallery 30s linear infinite;
+      will-change: transform;
+    }
+    .carousel.paused {
+      animation-play-state: paused;
+    }
+    .carousel img {
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+      transition: transform 0.3s, z-index 0.3s;
+      cursor: pointer;
+    }
+    .carousel img.active {
+      transform: scale(1.8);
+      z-index: 10;
+    }
+
+    @keyframes slideGallery {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    ul { list-style: none; padding-left: 1rem; }
+    ul li::before {
+      content: '•'; color: #00aaff; margin-right: 0.5rem;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+  <div class="bubble" style="left: 3%; animation-delay: 0s; animation-duration: 25s; width: 15px; height: 15px;"></div>
+  <div class="bubble" style="left: 12%; animation-delay: 4s; animation-duration: 28s; width: 17px; height: 17px;"></div>
+  <div class="bubble" style="left: 21%; animation-delay: 2s; animation-duration: 30s; width: 16px; height: 16px;"></div>
+  <div class="bubble" style="left: 30%; animation-delay: 6s; animation-duration: 32s; width: 18px; height: 18px;"></div>
+  <div class="bubble" style="left: 39%; animation-delay: 1s; animation-duration: 27s; width: 19px; height: 19px;"></div>
+  <div class="bubble" style="left: 48%; animation-delay: 3s; animation-duration: 29s; width: 20px; height: 20px;"></div>
+  <div class="bubble" style="left: 57%; animation-delay: 5s; animation-duration: 31s; width: 21px; height: 21px;"></div>
+  <div class="bubble" style="left: 66%; animation-delay: 2s; animation-duration: 33s; width: 22px; height: 22px;"></div>
+  <div class="bubble" style="left: 75%; animation-delay: 0s; animation-duration: 26s; width: 23px; height: 23px;"></div>
+  <div class="bubble" style="left: 84%; animation-delay: 4s; animation-duration: 30s; width: 24px; height: 24px;"></div>
+  <div class="bubble" style="left: 93%; animation-delay: 1s; animation-duration: 28s; width: 25px; height: 25px;"></div>
+  <div class="bubble" style="left: 10%; animation-delay: 5s; animation-duration: 34s; width: 22px; height: 22px;"></div>
+  <div class="bubble" style="left: 50%; animation-delay: 3s; animation-duration: 32s; width: 24px; height: 24px;"></div>
+  <div class="bubble" style="left: 70%; animation-delay: 6s; animation-duration: 29s; width: 19px; height: 19px;"></div>
+</div>
+
+
+  <header>
+    <div class="logo">PulseOS</div>
+    <nav>
+      <select onchange="location.hash = this.value;">
+        <option value="#inicio">Inicio</option>
+        <option value="#descarga">Descarga</option>
+        <option value="#galeria">Galería</option>
+        <option value="#conocenos">Conócenos</option>
+      </select>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2>¿Qué es PulseOS?</h2>
+    <p>PulseOS es un sistema operativo especialmente diseñado para ofrecer el máximo rendimiento en videojuegos.
+    Con una interfaz limpia, tiempos de carga reducidos y compatibilidad con una amplia gama de hardware, PulseOS es la plataforma ideal para gamers profesionales y casuales que buscan una experiencia rápida, estable y enfocada en el juego.</p>
+  </section>
+
+  <section id="descarga">
+    <h2>Descarga PulseOS</h2>
+    <p>Puedes descargar la última versión de PulseOS haciendo clic en los botones a continuación:</p>
+    <div class="button-group">
+      <a 
+        href="https://drive.google.com/uc?export=download&id=1apk0uxFmjgNt2l4MgMYCEmrgtl_f76zg"
+        class="download-button" 
+        target="_blank">Descargar PulseOS (.iso)
+      </a>
+      <a 
+        href="https://drive.google.com/drive/folders/1EuMvKULbGIFSijfSPQnaKmJevrnjVctg?usp=sharing"
+        class="download-button green" 
+        target="_blank">Descargar Documentación
+      </a>
+    </div>
+    <h3 style="margin-top: 2rem;">Instrucciones de instalación en maquina virtual</h3>
+    <p>1. Descarga el archivo ISO desde el enlace anterior.</p>
+    <p>2. Abre tu maquina virtual como VirtualBox o VMware Workstation Player.</p>
+    <p>3. Hacer clic en "Create a New Virtual Machine".</p>
+    <p>4. Seleccionar "Installer disc image file (iso)" y elegir la ISO antes descargada.</p>
+    <p>5. Asignar nombre y ubicación a la máquina virtual.</p>
+    <p>6. Asignar mínimo 30 GB de disco (recomendado 50 GB), como archivo único.</p>
+    <p>7. Ajustar el hardware a lo que se necesite y concidere coerrecto (minimo 4gb de Ram y 2 nucleos).</p>
+    <p>8. Una vez en el escritorio, hacer clic en "Install".</p>
+    <p>9. Sigue las instrucciones en pantalla para completar la instalación.</p>
+  </section>
+  <section id="galeria">
+    <h2>Galería</h2>
+    <div class="carousel-container">
+      <div class="carousel" id="carrusel">
+        <img src="images/Pantalla1.jpeg" alt="Pantalla 1">
+        <img src="images/Pantalla2.jpeg" alt="Pantalla 2">
+        <img src="images/Pantalla3.jpeg" alt="Pantalla 3">
+        <img src="images/Pantalla4.jpeg" alt="Pantalla 4">
+        <img src="images/Pantalla5.jpeg" alt="Pantalla 5">
+      </div>
+    </div>
+  </section>
+
+  <section id="conocenos">
+    <h2>Conócenos</h2>
+    <p>Somos un grupo de estudiantes apasionados por los videojuegos y el desarrollo de software. Nuestra misión es crear un sistema operativo que elimine lo innecesario y se enfoque en lo que realmente importa: jugar.</p>
+    <ul>
+      <li>💻 Pablo Cisneros – Desarrollador</li>
+      <li>🎧 Alejandro Ramírez – Desarrollador</li>
+      <li>⚡ Esteban Reyna – Desarrollador</li>
+      <li>🎮 Jorge Escobar – Desarrollador</li>
+      <li>🍩 Santiago Rodríguez – Desarrollador</li>
+    </ul>
+  </section>
+
+  <script>
+    const carousel = document.getElementById('carrusel');
+    const images = carousel.querySelectorAll('img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const isActive = img.classList.contains('active');
+
+        images.forEach(i => i.classList.remove('active'));
+
+        if (!isActive) {
+          img.classList.add('active');
+          carousel.classList.add('paused');
+        } else {
+          carousel.classList.remove('paused');
+        }
+      });
+    });
+  </script>
+  <script>
+  document.querySelectorAll('.bubble').forEach(bubble => {
+    bubble.addEventListener('click', () => {
+      bubble.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+      bubble.style.transform = 'scale(2)';
+      bubble.style.opacity = '0';
+
+      setTimeout(() => {
+        bubble.style.transform = 'scale(1)';
+        bubble.style.opacity = '1';
+      }, 600);
+    });
+  });
+  </script>
+
+</body>
+</html>
